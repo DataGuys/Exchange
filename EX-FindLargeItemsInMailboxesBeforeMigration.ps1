@@ -1,0 +1,1 @@
+Get-Mailbox -ResultSize Unlimited | Get-MailboxFolderStatistics -IncludeAnalysis -FolderScope All | Where-Object {(($_.TopSubjectSize -Match "MB") -and ($_.TopSubjectSize -GE 150.0)) -or ($_.TopSubjectSize -Match "GB")} | Select-Object Identity, TopSubject, TopSubjectSize, DisplayName | Export-CSV -path "C:\Scripts\LargeItemreport.csv" -notype
